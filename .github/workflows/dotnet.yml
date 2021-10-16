@@ -21,3 +21,12 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+
+  deploy:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: echo
+      run: echo "Hello world"
+
