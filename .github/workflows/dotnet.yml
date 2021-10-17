@@ -45,5 +45,5 @@ jobs:
         
     - name: Deploy to IIS
       run: |
-        Copy-Item . D:/inetpub/wwwroot/dotnetcore-webapp -Recurse -Force
+        Copy-Item . D:/inetpub -Recurse -Force
         
