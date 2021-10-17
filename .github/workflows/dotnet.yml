@@ -38,11 +38,5 @@ jobs:
     needs: build
 
     steps:
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v2
-      with:
-        name: .net-app
-        
-    - name: Deploy to IIS
-      run: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE -command "Copy-Item D:/tool/actions-runner/_work/MyHelloWorld/MyHelloWorld D:/inetpub -Recurse -Force"
-        
+    - name: test
+      run: echo "test"
