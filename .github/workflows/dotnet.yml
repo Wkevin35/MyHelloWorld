@@ -45,5 +45,5 @@ jobs:
         
     - name: Deploy to IIS
       run: |
-        Copy-Item . D:/inetpub -Recurse -Force
+        Copy-Item ../MyHelloWorld/MyHelloWorld D:/inetpub -Recurse -Force
         
