@@ -22,7 +22,7 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: dotnet publish
-      run: dotnet publish MyHelloWorld/MyHelloWorld.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      run: dotnet publish D:/a/MyHelloWorld/MyHelloWorld/MyHelloWorld.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: echo
       run: echo ${{env.DOTNET_ROOT}}
