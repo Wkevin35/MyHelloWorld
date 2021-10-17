@@ -1,32 +1,49 @@
-name: runMyHelloWorld
+name:  Build and deploy ASP.Net Core app to IIS - GitHubDemo
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - main
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+
+    - name: Set up .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+        dotnet-version: '5.0.x'
+        include-prerelease: true
+
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+    - name: dotnet publish
+      run: dotnet publish ActionDemo/ActionDemo.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+    - name: echo
+      run: echo ${{env.DOTNET_ROOT}}
+
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v2
+      with:
+        name: .net-app
+        path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
-    steps:
-    - name: echo
-      run: echo "Hello world"
 
+    steps:
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v2
+      with:
+        name: .net-app
+        
+    - name: Deploy to IIS
+      run: |
+        Copy-Item . D:/inetpub/wwwroot/dotnetcore-webapp -Recurse -Force
+        
