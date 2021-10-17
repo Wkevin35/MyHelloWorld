@@ -44,6 +44,5 @@ jobs:
         name: .net-app
         
     - name: Deploy to IIS
-      run: |
-        Copy-Item ../MyHelloWorld/MyHelloWorld D:/inetpub -Recurse -Force
+      run: Copy-Item . D:/inetpub -Recurse -Force
         
