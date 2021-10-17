@@ -44,5 +44,5 @@ jobs:
         name: .net-app
         
     - name: Deploy to IIS
-      run: Copy-Item D:/tool/actions-runner/_work/MyHelloWorld/MyHelloWorld D:/inetpub -Recurse -Force
+      run: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.EXE -command "Copy-Item D:/tool/actions-runner/_work/MyHelloWorld/MyHelloWorld D:/inetpub -Recurse -Force"
         
